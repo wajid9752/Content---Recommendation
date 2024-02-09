@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <title>Sign Up</title>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/quill/bubble.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/quill/snow.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/morris.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vanilla-dataTables.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  </head>
+  <body>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-lg-6">
+            <div class="signin-wrapper mb-3">
+              <div class="form-wrapper">
+                <h6 class="mb-2">Sign Up</h6>
+                <!-- message  -->
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- end message -->
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+
+                    <button
+                          class="
+                            main-btn
+                            primary-btn
+                            btn-hover
+                            w-100
+                            text-center
+                            mt-3
+                          "
+                        >
+                          Sign Up
+                        </button>
+                </form>
+                <div class="singin-option pt-40">
+                  <p class="text-sm text-medium text-dark text-center">
+                    Already, have any account?
+                    <a href="{% url 'login' %}">Sign In</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+   
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/js/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/js/dynamic-pie-chart.js' %}"></script>
+    <script src="{% static 'assets/js/moment.min.js' %}"></script>
+    <script src="{% static 'assets/js/fullcalendar.js' %}"></script>
+    <script src="{% static 'assets/js/jvectormap.min.js' %}"></script>
+    <script src="{% static 'assets/js/world-merc.js' %}"></script>
+    <script src="{% static 'assets/js/polyfill.js' %}"></script>
+    <script src="{% static 'assets/js/quill.min.js' %}"></script>
+    <script src="{% static 'assets/js/vanilla-dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>

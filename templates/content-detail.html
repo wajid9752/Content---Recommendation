@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <p class="text-muted">{{ content.created_at }}</p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p class="card-text">Posted by: {{ content.user }}</p>
+                        </div>
+                        <div class="col-lg-6 text-end">
+                            <div class="mt-3">
+                                <span class="me-3"><i class="lni lni-eye"></i> {{ content.views }}</span>
+                                
+                                    <button 
+                                    class="btn btn-primary like-btn" 
+                                    data-content="{{ content.id }}" 
+                                    data-action="like">
+                                    <i class="lni lni-thumbs-up"></i> 
+                                    Like <span id="like-count-{{ content.id }}">{{ content.likes }}</span>
+                                    </button>
+                                    <button 
+                                    class="btn btn-danger dislike-btn" 
+                                    data-content="{{ content.id }}" 
+                                    data-action="dislike">
+                                    <i class="lni lni-thumbs-down"></i> 
+                                    Dislike <span id="dislike-count-{{ content.id }}">{{ content.dislikes }}</span>
+                                    </button>
+                                     
+                      
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            {% if content.file.url %}
+                            {% if is_img %}
+                                <img src="{{ content.file.url }}" class="img-fluid" alt="File Preview">
+                            {% elif is_video %}
+                                <video controls class="img-fluid">
+                                    <source src="{{ content.file.url }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            {% endif %}
+                        {% endif %} 
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mt-4">
+
+                    <h2 class="card-title mt-4">{{ content.title }}</h2>
+                    <p class="card-text mb-5">{{ content.description | safe }}</p>
+
+                    <div class="col-12 mb-5">
+                        <h4><i class="lni lni-layers"></i> Category</h4>
+                         <strong>{{content.category.name}}</strong>
+                    </div>
+                    
+                    <div class="col-12 mb-5">
+                        <h4><i class="lni lni-direction"></i> Tags</h4>
+                        {% for tag in content.tags.all %}                       
+                         <strong>#{{tag.name}},</strong>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'partials/re_cards.html' %}
+    
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".like-btn, .dislike-btn").click(function(){
+        var contentId = $(this).data('content');
+        var action = $(this).data('action');
+        $.ajax({
+            url: "{% url 'dislike_likes_view' %}",
+            type: "GET",
+            data: {'query': action, 'content': contentId},
+            success: function(response){
+                console.log("success" , response)
+                
+                if(response.status == 'success'){
+                    $("#like-count-" + contentId).text(response.like);
+                    $("#dislike-count-" + contentId).text(response.dislike);
+                } else {
+                    alert(response.status);
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

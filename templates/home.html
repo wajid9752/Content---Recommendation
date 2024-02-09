@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .form-container {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+</style>
+  <div class="container-fluid">
+    <!-- ========== title-wrapper start ========== -->
+    <div class="title-wrapper pt-30">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <div class="title mb-30 d-flex">
+            <h4 class="me-2">Filters</h4>
+            <div class="d-flex filters me-2">
+              <div class="form-container"> 
+               {{ cat_form }}
+              </div>
+              <div class="form-container">
+                {{ tag_form }}
+              </div>
+              <div class="form-container mt-4">
+                <a href="/" role="button" class="btn btn-outline-primary">Clear All Filter</a>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- ========== title-wrapper end ========== -->
+
+    {% include "partials/cards.html" %}
+  </div>
+  <!-- end container -->
+
+ 
+{% endblock %}

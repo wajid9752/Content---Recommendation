@@ -1,0 +1,41 @@
+    
+    <!-- ========== cards-styles start ========== -->
+    <div class="cards-styles">
+    
+        <!-- ========= card-style-5 start ========= -->
+        <div class="row">
+
+          
+          <!-- end col -->
+          {% for content in contents %}
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+            <div class="card-style-3 mb-30">
+              <div class="card-meta">
+                <div class="image">
+                <small>Posted {{ content.created_at|timesince }} ago</small>  
+                </div>
+                <hr>
+              </div>
+
+
+              <div class="card-content">
+                <h4><a href="{% url 'content_detail' content.id %}">  {{content.title}} </a></h4>
+                <p>
+                  {{ content.description|truncatewords:50 }}
+                </p>
+                <a href="{% url 'content_detail' content.id %}" class="read-more">Read More</a>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+
+          <div>
+            No Data Found
+          </div>
+          {% endfor %}
+       
+        </div>
+        <!-- end row -->
+        <!-- ========= card-style-5 end ========= -->
+      </div>
+      <!-- ========== cards-styles end ========== -->

@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <title>Sign Up</title>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/quill/bubble.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/quill/snow.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/morris.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vanilla-dataTables.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+  </head>
+  <body>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-lg-6">
+            <div class="signin-wrapper">
+              <div class="form-wrapper">
+                <h6 class="mb-5">Sign In</h6>
+                <!-- message  -->
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- end message -->
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="input-style-1">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Email" />
+                      </div>
+                    </div>
+
+                    <!-- end col -->
+                    <div class="col-12">
+                      <div class="input-style-1">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Password" />
+                      </div>
+                    </div>
+                  
+                    <!-- end col -->
+                    <div class="col-xxl-6 col-lg-12 col-md-6">
+                      <div
+                        class="
+                          text-start text-md-end text-lg-start text-xxl-end
+                          mb-30
+                        "
+                      >
+                        <a href="" class="hover-underline">
+                          Forgot Password?
+                        </a>
+                      </div>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-12">
+                      <div
+                        class="
+                          button-group
+                          d-flex
+                          justify-content-center
+                          flex-wrap
+                        "
+                      >
+                        <button
+                          class="
+                            main-btn
+                            primary-btn
+                            btn-hover
+                            w-100
+                            text-center
+                          "
+                        >
+                          Sign In
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end row -->
+                </form>
+                <div class="singin-option pt-40">
+                  <p class="text-sm text-medium text-dark text-center">
+                    Don’t have any account yet?
+                    <a href="{% url 'register' %}">Create an account</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+   
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/js/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/js/dynamic-pie-chart.js' %}"></script>
+    <script src="{% static 'assets/js/moment.min.js' %}"></script>
+    <script src="{% static 'assets/js/fullcalendar.js' %}"></script>
+    <script src="{% static 'assets/js/jvectormap.min.js' %}"></script>
+    <script src="{% static 'assets/js/world-merc.js' %}"></script>
+    <script src="{% static 'assets/js/polyfill.js' %}"></script>
+    <script src="{% static 'assets/js/quill.min.js' %}"></script>
+    <script src="{% static 'assets/js/vanilla-dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>
